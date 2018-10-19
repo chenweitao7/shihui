@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:context="http://www.springframework.org/schema/context" 
+		xmlns:aop="http://www.springframework.org/schema/aop" 
+		xmlns:tx="http://www.springframework.org/schema/tx" 
+	    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+	 
+	 
+<!-- 读取db.properties文件 -->
+	<context:property-placeholder location="classpath:db.properties" />
+	<!-- 配置c3p0连接池 -->
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}" ></property>
+		<property name="driverClass" value="${jdbc.driverClass}" ></property>
+		<property name="user" value="${jdbc.user}" ></property>
+		<property name="password" value="${jdbc.password}" ></property>
+	</bean>
+
+
+
+<!-- <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" ></property>
+     </bean> 
+ -->
+<bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
+		<!-- 将连接池注入到sessionFactory, hibernate会通过连接池获得连接 -->
+		<property name="dataSource" ref="dataSource" ></property> 
+		<!-- 配置hibernate基本信息 -->
+		<property name="hibernateProperties">
+			<props>
+				<!--  必选配置 -->
+			 	<!-- <prop key="hibernate.connection.driver_class" >com.mysql.jdbc.Driver</prop>
+				<prop key="hibernate.connection.url" >jdbc:mysql:///crm</prop>
+				<prop key="hibernate.connection.username" >root</prop>
+				<prop key="hibernate.connection.password" >123456</prop>  -->
+				<prop key="hibernate.dialect" >org.hibernate.dialect.MySQLDialect</prop>
+				
+				<!--  可选配置 -->
+				<prop key="hibernate.show_sql" >true</prop>
+				<prop key="hibernate.format_sql" >true</prop>
+				<prop key="hibernate.hbm2ddl.auto" >update</prop>
+			</props>
+		</property>
+		<!-- 引入orm元数据,指定orm元数据所在的包路径,spring会自动读取包中的所有配置 -->
+		<property name="mappingDirectoryLocations" value="classpath:com/meizhuo/domain" ></property>
+	</bean>
+
+
+   <!-- 核心事务管理器 -->
+	<bean name="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	
+	<!-- 配置通知 -->
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager" >
+		<tx:attributes>
+			<tx:method name="save*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="persist*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="update*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="modify*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="delete*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="remove*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="get*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true" />
+		</tx:attributes>
+	</tx:advice> 
+	<!-- 配置将通知织入目标对象
+	配置切点
+	配置切面 -->
+	 <aop:config>
+		<aop:pointcut expression="execution(* com.meizhuo.service.Impl.*ServiceImpl.*(..))" id="txPc"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPc" />
+	</aop:config> 
+   	 
+	 
+<bean name="userAction" class="com.meizhuo.web.action.UserAction">
+   <property name="userService" ref="userService"></property>
+</bean>
+<bean name="baseDictAction" class="com.meizhuo.web.action.BaseDictAction">
+  <property name="basedictservice" ref="baseDictService"></property>
+</bean>
+<bean name="getNameAction" class="com.meizhuo.web.action.GetNameAction">
+  <property name="getNameService" ref="getNameService"></property>
+</bean>
+<bean name="loginNameAction" class="com.meizhuo.web.action.LoginNameAction"></bean>
+<bean name="personalMessageAction" class="com.meizhuo.web.action.PersonalMessageAction">
+  <property name="personalMessageService" ref="personalMessageService"></property>
+</bean>
+<bean name="getProductMessageAction" class="com.meizhuo.web.action.GetProductMessageAction">
+  <property name="getProductMessageService" ref="getProductMessageService"></property>
+</bean>
+<bean name="findProductByIdAction" class="com.meizhuo.web.action.FindProductByIdAction">
+  <property name="findProductByIdService" ref="findProductByIdService"></property>
+</bean>
+<bean name="collectionAction" class="com.meizhuo.web.action.CollectionAction">
+  <property name="collectionService" ref="collectionService"></property> 
+  <property name="findProductByIdService" ref="findProductByIdService"></property>
+</bean>
+<bean name="returnCollectionAction" class="com.meizhuo.web.action.ReturnCollectionAction">
+  <property name="returnCollectionService" ref="returnCollectionService"></property>
+</bean>
+
+<bean name="userService"  class="com.meizhuo.service.Impl.UserServiceImpl"> 
+   <property name="ud" ref="userDao"></property>
+</bean>
+<bean name="baseDictService" class="com.meizhuo.service.Impl.BaseDictServiceImpl">
+   <property name="baseDictDao" ref="baseDictDao"></property>
+</bean>
+<bean name="getNameService" class="com.meizhuo.service.Impl.GetNameServiceImpl">
+   <property name="getNameDao" ref="getNameDao"></property>
+</bean>
+<bean name="personalMessageService" class="com.meizhuo.service.Impl.PersonalMessageServiceImpl">
+   <property name="personalMessageDao" ref="personalMessageDao"></property>
+</bean>
+<bean name="getProductMessageService" class="com.meizhuo.service.Impl.GetProductMessageServiceImpl">
+   <property name="getProductMessageDao" ref="getProductMessageDao"></property>
+</bean>
+<bean name="findProductByIdService" class="com.meizhuo.service.Impl.FindProductByIdServiceImpl">
+   <property name="findProductByIdDao" ref="findProductByIdDao"></property>
+</bean>
+<bean name="collectionService" class="com.meizhuo.service.Impl.ColllectionServiceImpl">
+   <property name="collectionDao" ref="collectionDao"></property>
+</bean> 
+<bean name="returnCollectionService" class="com.meizhuo.service.Impl.ReturnCollectionServiceImpl">
+   <property name="returnCollectionDao" ref="returnCollectionDao"></property>
+</bean> 
+
+
+<bean name="userDao" class="com.meizhuo.dao.Impl.UserDaoImpl" >
+   <property name="sessionFactory" ref="sessionFactory" ></property>
+</bean>
+<bean name="baseDictDao" class="com.meizhuo.dao.Impl.BaseDictDaoImpl" >
+   <property name="sessionFactory" ref="sessionFactory" ></property>
+</bean>
+<bean name="getNameDao" class="com.meizhuo.dao.Impl.GetNameDaoImpl" >
+   <property name="sessionFactory" ref="sessionFactory" ></property>
+</bean>
+<bean name="personalMessageDao" class="com.meizhuo.dao.Impl.PersonalMessageDaoImpl" >
+   <property name="sessionFactory" ref="sessionFactory" ></property>
+</bean>
+<bean name="getProductMessageDao" class="com.meizhuo.dao.Impl.GetProductMessageDaoImpl" >
+   <property name="sessionFactory" ref="sessionFactory" ></property>
+</bean>
+<bean name="findProductByIdDao" class="com.meizhuo.dao.Impl.FindProductByIdDaoImpl" >
+   <property name="sessionFactory" ref="sessionFactory" ></property>
+</bean>
+<bean name="collectionDao" class="com.meizhuo.dao.Impl.CollectionDaoImpl">
+    <property name="sessionFactory" ref="sessionFactory" ></property>
+</bean>	
+<bean name="returnCollectionDao" class="com.meizhuo.dao.Impl.ReturnCollectionDaoImpl">
+<!--     <property name="sessionFactory" ref="sessionFactory" ></property>
+ --></bean>	 
+	 
+</beans>
+

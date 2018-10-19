@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.meizhuo.domain" >
+	<class name="WindowName" table="window_name" >
+		<id name="id"  >
+			<generator class="native"></generator>
+		</id>
+		<property name="window_id"  ></property>
+	    <property name="window_name" ></property>
+	    <property name="window_image"></property>
+	     <property name="window_address"></property>
+	</class>
+</hibernate-mapping>

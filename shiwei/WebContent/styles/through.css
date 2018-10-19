@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.center {
+    text-align: center;
+}
+.bc-img {
+    background-image: url("../img/checked.png");
+    background-repeat: repeat;
+    background-size: 100%;
+}
+
+header {
+    background-color: #f38735;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+header span {
+    font-size: 22px;
+    color: #fff;
+}
+header a.header_2 {
+    color: #fff;
+    font-size: 16px;
+    line-height: 33px;
+    margin: 0 13px;
+}
+#more {
+    float: right;
+    margin-right: 10px;
+}
+
+content ul li div.chose {
+    width: 50px;
+    height: 50px;
+    -webkit-display: flex;
+    -moz-display: flex;
+    display: flex;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+}
+
+content ul li div.chose div {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+content ul.ui-list li {
+    margin-top: 13px;
+    margin-left: 25px;
+}
+
+content ul li div img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+content ul li div.ui-border-b {
+    margin-left: 5px;
+}
+
+content ul li div h4 sub {
+    padding-left: 5px;
+    font-size: 14px;
+    color: #777;
+}
+
+footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+}
+footer a {
+    color: #fff;
+    font-size: 20px;
+    background-color: red;
+    padding: 5px 50px;
+    border-radius: 10px;
+}

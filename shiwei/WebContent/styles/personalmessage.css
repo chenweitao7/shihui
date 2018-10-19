@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+.left {
+	float: left;
+}
+.center {
+	text-align: center;
+}
+header {
+	background-color: #f38735;
+	padding: 10px 0;
+	margin-bottom: 20px;
+}
+header span {
+	padding-right: 30px;
+	font-size: 22px;
+	color: #fff;
+}
+
+content form ul li {
+	position: relative;
+	margin: 0 12px;
+}
+img.underline-img {
+	position: absolute;
+	bottom: 0px;
+	height: 2px;
+	width: 100%;
+}
+img.jiantou {
+	width: 25px;
+	position: relative;
+	top: 3px;
+}
+
+content form ul li input[type=text] {
+	border: none;
+	text-align: right;
+}
+
+#hold {
+	font-size: 1.1em;
+	background-color: #f38735;
+	opacity: 0.85;
+	padding: 7px 30px;
+	margin-top: 30px;
+	text-align: center;
+	color: #fff;
+}

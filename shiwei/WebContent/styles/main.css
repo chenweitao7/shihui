@@ -1,0 +1,182 @@
+@charset "UTF-8";
+
+@import url("footer.css");
+
+body {
+    -webkit-user-select: initial;
+    background-color: #f2f2f2;
+    width: 100%
+}
+
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
+.inline-block {
+    display: inline-block;
+}
+.ui-list {
+	background-color: inherit;
+}
+
+
+/*header*/
+#headerImg div.lunbo {
+    position: relative;
+    width: 70%;
+    height: inherit;
+    padding: 1% 2%;
+    background-color: #f38735;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#headerImg div.lunbo ul {
+    width: 100%;
+}
+#headerImg div.lunbo ul li {
+    position: absolute;
+    touch-action: none;
+    width: 100%;
+}
+div.lunbo div span.active {
+    background-color: #e57825;
+}
+div.lunbo div {
+    position: absolute;
+    bottom: 0px;
+    padding: 4px 0;
+    width: 100%;
+    padding-left: 30%;
+}
+div.lunbo div span {
+    display: inline-block;
+    width: 20px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+#searchInput {
+    position: relative;
+    border-radius: 20px;
+    border: 2px #e5e0e0 solid;
+    padding: 0 5px 3px 13px;
+    display: inline-block;
+}
+
+input {
+    border: none;
+}
+
+#headerImg {
+    height: 200px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#LIVE {
+    height: 35px;
+    background-color: #787878;
+    padding: 2px 30px 4px 13px;
+    box-sizing: border-box;
+}
+#LIVE span {
+	display: inline-block;
+	padding: 0 3px;
+    font-weight: bold;
+    border: 1px #ccc solid;
+}
+#LIVE div {
+	width: 75%;
+	display: inline-block;
+	color: #fff;
+	line-height: 30px;
+}
+
+
+/*content*/
+content h1 {
+	padding: 15px 0 5px 13px;
+	font-size: 1.5em;
+}
+
+.specialBox {
+	margin: 13px;
+	margin-top: 0px;
+	border: 1px solid #e9e9e9;
+	border-bottom: 0px;
+	border-left: 0px;
+	box-shadow: 3px -3px 10px #e9e9e9;
+	padding: 5px 13px 0 0;
+}
+.specialBox div.shadow {
+	padding-top: 1px;
+}
+.specialBox div.shadow div div.ui-list {
+}
+.specialBox div.shadow div div.ui-list div.ui-col {
+	width: 100%;
+}
+.specialBox div.shadow div div.ui-list div.ui-col div.img {
+	position: relative;
+	height: 75px;
+	width: 100%;
+}
+.specialBox div.shadow div div.ui-list div.ui-col div.img img {
+	border-radius: 3px;
+}
+.specialBox div.shadow div div.ui-list div.ui-col div span {
+	display: block;
+	position: absolute;
+	width: 90%;
+	font-size: 12px;
+	text-align: center;
+	bottom: 0px;
+	padding: 3px 0;
+	background-color: #5f383859;
+	color: #f2f2f2cc;
+	border-radius: 0px 3px 3px 0px;
+}
+div.specialPrice {
+	width: 90%;
+	text-align: center;
+	color: red;
+}
+div.specialPrice s {
+	font-size: 8px;
+}
+
+ul.ui-list li div.ui-list-img-square span {
+	display: block;
+	width: 20px;
+	height: 100px;
+	box-sizing: border-box;
+	border: 2px solid #000;
+	border-right: 0;
+	margin-right: 100px;
+	padding-top: 1px;
+}
+ul.ui-list li div.ui-list-img-square span img {
+	margin-right: 10px;
+	border-radius: 0px 5px 5px 0px;
+}
+ul.ui-list li {
+	margin-top: 13px;
+}
+ul.ui-list li div.ui-list-info h1 {
+	font-size: 1.2em;
+	padding: 0 0 7px 0;
+}
+ul.ui-list li div.ui-list-info p.starPrice img {
+	width: 20px;
+	height: 20px;
+}
+ul.ui-list li div.ui-list-info p.starPrice em {
+	font-size: 1.2em;
+	color: #000;
+}
+ul.ui-list li div.ui-list-info p.ui-nowrap {
+	color: #838282;
+}

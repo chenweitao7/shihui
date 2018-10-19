@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@import url("footer.css");
+
+.left {
+	float: left;
+}
+.center {
+	text-align: center;
+}
+
+.active {
+	border-bottom: 5px solid #f3a319;
+}
+
+div.wrap {
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	margin: 20px 20px 0;
+}
+div.wrap div {
+	flex: 1;
+	-webkit-flex: 1;
+	-moz-flex: 1;
+	padding: 5px 0px;
+	font-size: 20px;
+}

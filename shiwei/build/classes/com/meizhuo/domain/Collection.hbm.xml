@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.meizhuo.domain" >
+	<class name="Collection" table="collection" >
+		<id name="id"  type="java.lang.Integer">
+			<generator class="native" ></generator>
+		</id>
+		<property name="window_id" type="java.lang.String"></property>
+		<property name="window_name"  type="java.lang.String"></property>
+		<property name="window_path"  type="java.lang.String"></property>
+	</class>
+</hibernate-mapping>

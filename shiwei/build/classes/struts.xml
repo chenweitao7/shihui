@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+   
+   
+   
+   <constant name="struts.objectFactory" value="spring"></constant>
+  
+   
+   <package name="sw"  namespace="/" extends="struts-default">
+     
+	 <interceptors>
+		<!-- 注册拦截器 -->
+		<interceptor name="privilegeInterceptor" class="com.meizhuo.web.interceptor.PrivilegeInterceptor"></interceptor>
+				
+		<!-- 配置拦截器栈 -->
+		<interceptor-stack name="myStack">
+			<interceptor-ref name="privilegeInterceptor">
+				<param name="excludeMethods">login,regist,execute,getMessage</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</interceptor-stack>
+	 </interceptors>
+		<!-- 指定默认拦截器栈 -->
+	 <default-interceptor-ref name="myStack"></default-interceptor-ref>
+   
+      <global-results>
+			<result name="toLogin" type="redirect" >/login.jsp</result>
+		</global-results>
+      <global-exception-mappings>
+        <exception-mapping result="error" exception="java.lang.RuntimeException"></exception-mapping>
+      </global-exception-mappings>
+   
+      <action name="UserAction_*"  class="userAction" method="{1}">
+         <result name="error">/login.jsp</result>
+         <result name="toHome">/index.html</result>
+         <result name="toLogin">/login.jsp</result>
+         <result name="regist">/regist.jsp</result>
+      </action>
+      
+      <action name="BaseDictAction" class="baseDictAction" method="execute"></action>
+      <action name="GetNameAction" class="getNameAction" method="execute"></action>
+      <action name="LoginNameAction" class="loginNameAction" method="execute"></action>
+      <action name="PersonalMessageAction" class="personalMessageAction" method="execute">
+        <result name="mymain">mymain.html</result>
+      </action>
+      <action name="GetProductMessageAction_*" class="getProductMessageAction" method="{1}">
+          <result name="mymain">/mymain.html</result>
+      </action>
+      <action name="FindProductByIdAction" class="findProductByIdAction" method="execute">
+      </action>
+      <action name="CollectionAction" class="collectionAction" method="execute"></action>
+       <action name="ReturnCollectionAction" class="returnCollectionAction" method="execute"></action>
+   </package>
+</struts>

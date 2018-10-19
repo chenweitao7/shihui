@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>食汇 | 个人信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="http://i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css">
+    <link rel="stylesheet" type="text/css" href="frozenui-2.0.0/src/css/frozen.css">
+    <link rel="stylesheet" type="text/css" href="frozenui-2.0.0/src/css/frozenui.css">
+    <link rel="stylesheet" type="text/css" href="styles/personalmessage.css">
+    <script type="text/javascript" src="zepto-master/src/zepto.js"></script>
+    <script type="text/javascript" src="zepto-master/src/touch.js"></script>
+    <script type="text/javascript" src="zepto-master/src/event.js"></script>
+    <script type="text/javascript" src="zepto-master/src/ajax.js"></script>
+    <script type="text/javascript" src="js/pmessage.js"></script>
+    <style type="text/css">
+    body {
+        background: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <header class="center">
+        <a href="mymain.html"><img class="left" src="img/return.png" width="30"></a>
+        <span>个人信息</span>
+    </header>
+    <content>
+        <form  action="http://193.112.8.16/shihui/PersonalMessageAction" method="post">
+            <ul class="ui-list ui-list-single">
+            	<li>
+                    <div class="ui-list-info" style="padding-right: 0px;">
+                        <img src="img/underline.png" class="underline-img">
+                        <h4 class="ui-nowrap">头像</h4>
+                        <img width="70" src="img/exm1.png" style="border-radius: 5px;">
+                    </div>
+                </li>
+                <li>
+                    <div class="ui-list-info" style="padding-right: 0px;">
+                        <img src="img/underline.png" class="underline-img">
+                        <h4 class="ui-nowrap">姓名</h4>
+                        <div id="user_name" class="ui-txt-info">
+                            <input type="text" name="user_name" placeholder="姓名">
+                        </div>
+                        <img class=" jiantou" src="img/箭头.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="ui-list-info" style="padding-right: 0px;">
+                        <img src="img/underline.png" class="underline-img">
+                        <h4 class="ui-nowrap">性别</h4>
+                        <div id="user_sex" class="ui-txt-info">
+                        	<label><input type="radio" name="user_sex" value="boy"> 男</label>
+                        	<span style="padding: 0 5px;"></span>
+                        	<label><input type="radio" name="user_sex" value="girl"> 女</label>
+                        </div>
+                        <img class=" jiantou" src="img/箭头.png" style="opacity: 0;">
+                    </div>
+                </li>
+                <li>
+                    <div class="ui-list-info" style="padding-right: 0px;">
+                        <img src="img/underline.png" class="underline-img">
+                        <h4 class="ui-nowrap">联系电话</h4>
+                        <div id="user_phone" class="ui-txt-info">
+                            <input type="text" name="user_phone" placeholder="联系电话">
+                        </div>
+                        <img class=" jiantou" src="img/箭头.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="ui-list-info" style="padding-right: 0px;">
+                        <img src="img/underline.png" class="underline-img">
+                        <h4 class="ui-nowrap">地址</h4>
+                        <div id="user_address" class="ui-txt-info">
+                            <input type="text" name="user_address" placeholder="地址">
+                        </div>
+                        <img class=" jiantou" src="img/箭头.png">
+                    </div>
+                </li>
+            </ul>
+            <div class="center">
+                <input id="hold" class="ui-border-radius" type="submit" value="保存">
+            </div>
+        </form>
+    </content>
+</body>
+
+</html>
